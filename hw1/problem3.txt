@@ -1,12 +1,13 @@
 - cd: It is the command that is used for changing to a specified directory in the file system. The parameter for this command must be the absolute path if the folder is not reachable from the current folder. Otherwise, it can be the relative path.
 - ls: It is the command for listing the content on the current directory. It shows every file and folder that is contained within the current folder
 - mv: It is the command for moving some content from a directory to another different one in the file system. It needs two parameters, which are the source path and the destination path
-- pwd: 
+- pwd: It is the command that indicates where the console's user is currently located in the filesystem. PWD stands for 'Print Working Directory' 
 - mkdir: It is the command for creating a brand new directory with the name given in the parameters of the command.
-- rm:
-- htop: 
-- more: 
-- less: 
+- rm: It is the command for removing the indicated content (given as parameter) of a directory.
+- htop: It is the command for monitoring and administrating the usage of system's resources.
+- more: It is a command that is useful for viewing the content of a file, and it prints it so that it can be completely scrolled by the user.
+- less: It is a commant that is useful for viewing the content of a file. It prints the content page by page so it does not overload the console and the resources.
 
 - What is the shell?
-It is a command line interface (CLI)
+It is a command line interface (CLI) for Unix systems, which can be used to give instructions to the Kernel in the form of commands. It allows the 
+construction of scripts which perform these same operations automatically.
