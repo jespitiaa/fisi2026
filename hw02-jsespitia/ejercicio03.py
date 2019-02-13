@@ -3,5 +3,5 @@ for i in range(0,20,2):
 
 k=1
 while k < 20:
-    print(i)
+    print(k)
     k+=2
