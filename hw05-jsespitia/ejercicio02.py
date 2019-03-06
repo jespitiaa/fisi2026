@@ -2,7 +2,6 @@ uAst = 1.45*10**8
 uTmp = 3.15*10**7
 uMS = 333000
 uMT = 2*10**30
-g = 6.674*10**-11
 
 class CuerpoCeleste:
     
@@ -15,24 +14,45 @@ class CuerpoCeleste:
         self.fx=0
         self.fy=0
 
-    def calculeFuerza():
-        #Toca revisar esto
-        fmag = (g* self.mass)/((self.xpos**2)+(self.ypos**2))
-
-
-    def muevete(dt):
-        self.xpos = self.xpos + self.vx*dt + ((dt**2)*(self.fx/self.mass))/2
-        self.ypos = self.ypos + self.vy*dt+ ((dt**2)*(self.fy/self.mass))/2
+    def calculeFuerza(self):
+        M_sun = 1
+        g = 39.5
+        r = ((self.xpos**2)+(self.ypos**2))**(1/2)
+        self.fx = (g* self.mass * M_sun)*self.xpos/(r**3)
+        self.fy = (g* self.mass * M_sun)*self.ypos/(r**3)
+        
+    def muevete(self,dt):
+        
+        self.vx += (self.fx/self.mass)*dt
+        self.vy += (self.fy/self.mass)*dt
+        self.xpos += self.vx*dt 
+        self.ypos += self.vy*dt
     
-tierra = CuerpoCeleste(1,0,0,6.28,1/uMS)
-dt = 1/365
-for i in range(0,365/4):
-    muevete(dt)
-    print('t: '+str(dt*i) + ', x: '+str(tierra.xpos) + ', y: ' + str(tierra.ypos))
-print('posicion final: ' + tierra.xpos)    
+tierra = CuerpoCeleste(1,0,0,6.28,uMS**-1)
+dt = 365**-1
+tactual = 0.0
+print(dt)
+tierra.calculeFuerza()
+X14 = []
+Y14 = []
+X34 = []
+Y34 = []
+while (tactual < 0.75):
+    if(tactual < 0.25):
+        X14.append(tierra.xpos)
+        Y14.append(tierra.ypos)
+    X34.append(tierra.xpos)
+    Y34.append(tierra.ypos)
+    tierra.muevete(dt)
 
-import matplotlib.pyploy as plt
+    tactual += dt
+
+import matplotlib.pyplot as plt
 
 fig = plt.figure(figsize = (5,5))
-plt.plot(X,Y)
-plt.savefig('orbita.png')
+plt.plot(X14,Y14)
+plt.savefig('trayectoria025.png')
+
+fig2 = plt.figure(figsize = (5,5))
+plt.plot(X34,Y34)
+plt.savefig('trayectoria075.png')
